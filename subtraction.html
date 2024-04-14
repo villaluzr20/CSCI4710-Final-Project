@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subtraction Test</title>
+    <style>
+        /* Styles are identical across all test pages */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+            font-size: 15px;
+            color: #888;
+            letter-spacing: 0px;
+            text-align: justify;
+            line-height: 100%;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #003366;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+        }
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #003366;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .quiz-container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            font-weight: bold;
+        }
+        .question input {
+            margin-left: 10px;
+        }
+        .feedback {
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .advice-message {
+            color: red;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="study.html">Study Page</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Subtraction Test</h1>
+    </header>
+
+    <section class="quiz-container">
+        <form id="subtractionTestForm">
+            <div class="question">
+                <label>15 - 7 = </label>
+                <input type="text" name="q1" autocomplete="off">
+                <span class="feedback"></span>
+            </div>
+            <!-- Additional questions can be added here -->
+            <button type="button" onclick="checkAnswers()">Submit Answers</button>
+        </form>
+        <div class="advice-message" id="adviceMessage"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Math Test Taking Application. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function checkAnswers() {
+            var answers = {q1: '8' /* Additional answers go here */};
+            var form = document.getElementById('subtractionTestForm');
+            var incorrectCount = 0;
+
+            for (var key in answers) {
+                var userAnswer = form[key].value;
+                var feedbackIcon = form[key].nextElementSibling;
+                if (userAnswer === answers[key]) {
+                    feedbackIcon.innerHTML = '✅';
+                    feedbackIcon.style.color = 'green';
+                } else {
+                    feedbackIcon.innerHTML = '❌';
+                    feedbackIcon.style.color = 'red';
+                    incorrectCount++;
+                }
+            }
+
+            var adviceMessage = document.getElementById('adviceMessage');
+            if (incorrectCount > 5) {
+                adviceMessage.innerHTML = 'You have more than five incorrect answers. Consider revisiting the <a href="study.html">Study Page</a> to improve your skills.';
+            } else {
+                adviceMessage.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

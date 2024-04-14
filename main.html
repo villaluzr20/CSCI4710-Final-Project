@@ -1,22 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Math Test Taking Application</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        body {
+            font-family: 'Georgia', Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+            font-size: 15px;
+            color: #888;
+            letter-spacing: 0px;
+            text-align: justify;
+            line-height: 100x;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #003366;
+            color: #ffffff;
+        }
+
+        header.intro img {
+            max-width: 10%;
+        }
+
+        nav {
+            background-color: #003366;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-header {
+            display: inline-block;
+        }
+
+        .navbar-toggle {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .navbar-toggle:focus {
+            outline: none;
+        }
+
+        .icon-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 4px 0;
+            transition: background-color 0.4s ease;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar-collapse {
+            display: none;
+        }
+
+        .navbar-collapse.show {
+            display: block;
+        }
+
+        section {
+            margin-top: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+        a {
+            color: #35424a;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* Additional styles from the second code snippet */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 0%;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        
+        /* New styles for the Math Tests Section */
+        .test-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .test-link {
+            width: 48%; /* Adjust as needed */
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #35424a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .test-link:hover {
+            text-decoration: underline;
+        }
+
+        .test-image {
+            max-width: 50px;
+            max-height: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .image-container img {
+            max-width: 10%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav>
-        <div class="cluster right">
-            <a href="about.html">About</a>
-            <a href="test.html">Take a Test</a>
-            <a href="results.html">Results</a>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" aria-label="Toggle Navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse" id="navbar-collapse">
+                <ul class="nav-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="test.html">Take a Test</a></li>
+                    <li><a href="results.html">Results</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- Intro Header -->
     <header class="intro">
-        <img src="background.jpg" alt="Background Image">
+        <img src="education.png" alt="Background Image" class="center">
         <div class="text-container">
             <h1>Welcome to Math Test Taking Application!</h1>
             <button class="explore-button">Explore</button>
@@ -27,7 +218,7 @@
     <section class="about">
         <h2>About Math Test Taking Application</h2>
         <div class="image-container">
-            <img src="about-image.jpg" alt="About Image">
+            <img src="about.png" alt="About Image" class="center">
         </div>
         <p>This website is a math test taking application designed to help users practice and improve their math skills.</p>
         <p>It was created by [Your Name Here].</p>
@@ -38,27 +229,31 @@
         <h2>Math Tests</h2>
         <div class="test-container">
             <!-- Addition Test -->
-            <a href="#" class="test-link">
+            <a href="addition.html" class="test-link">
+                <img src="addition.png" alt="Addition Test" class="test-image">
                 <h3>Addition Test</h3>
-                <p>// Placeholder for created image</p>
+                <p>This quiz tests your addition skills.</p>
             </a>
 
             <!-- Subtraction Test -->
-            <a href="#" class="test-link">
+            <a href="subtraction.html" class="test-link">
+                <img src="subtraction.png" alt="Subtraction Test" class="test-image">
                 <h3>Subtraction Test</h3>
-                <p>// Placeholder for created image</p>
+                <p>This quiz tests your subtraction skills.</p>
             </a>
 
             <!-- Multiplication Test -->
-            <a href="#" class="test-link">
+            <a href="multiplication.html" class="test-link">
+                <img src="multiplication.png" alt="Multiplication Test" class="test-image">
                 <h3>Multiplication Test</h3>
-                <p>// Placeholder for created image</p>
+                <p>This quiz tests your multiplication skills.</p>
             </a>
 
             <!-- Division Test -->
-            <a href="#" class="test-link">
+            <a href="division.html" class="test-link">
+                <img src="division.png" alt="Division Test" class="test-image">
                 <h3>Division Test</h3>
-                <p>// Placeholder for created image</p>
+                <p>This quiz tests your division skills.</p>
             </a>
         </div>
     </section>
@@ -67,5 +262,16 @@
     <footer>
         <p>&copy; 2023 Math Test Taking Application. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var navbarToggle = document.querySelector('.navbar-toggle');
+            var navbarCollapse = document.querySelector('.navbar-collapse');
+
+            navbarToggle.addEventListener('click', function () {
+                navbarCollapse.classList.toggle('show');
+            });
+        });
+    </script>
 </body>
 </html>
