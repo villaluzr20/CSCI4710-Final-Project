@@ -197,7 +197,7 @@
             </div>
             <div class="navbar-collapse" id="navbar-collapse">
                 <ul class="nav-links">
-                    <li><a href="main.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="study.html">Study</a></li>
                     <li><a href="test.html">Tests</a></li>
                 </ul>
@@ -207,7 +207,7 @@
 
     <!-- Intro Header -->
     <header class="intro">
-        <img src="education.png" alt="Background Image" class="center">
+        <img src="{{ url_for('static', filename='education.png') }}" alt="Background Image" class="center">
         <div class="text-container">
             <h1>Flex your math skills and select your test!</h1>
             
@@ -222,28 +222,28 @@
         <div class="test-container">
             <!-- Addition Test -->
             <a href="addition.html" class="test-link">
-                <img src="addition.png" alt="Addition Test" class="test-image">
+                <img src="{{ url_for('static', filename='addition.png') }}" alt="Addition Test" class="test-image">
                 <h3>Addition Test</h3>
                 <p>This quiz tests your addition skills.</p>
             </a>
 
             <!-- Subtraction Test -->
             <a href="subtraction.html" class="test-link">
-                <img src="subtraction.png" alt="Subtraction Test" class="test-image">
+                <img src="{{ url_for('static', filename='subtraction.png') }}" alt="Subtraction Test" class="test-image">
                 <h3>Subtraction Test</h3>
                 <p>This quiz tests your subtraction skills.</p>
             </a>
 
             <!-- Multiplication Test -->
             <a href="multiplication.html" class="test-link">
-                <img src="multiplication.png" alt="Multiplication Test" class="test-image">
+                <img src="{{ url_for('static', filename='multiplication.png') }}" alt="Multiplication Test" class="test-image">
                 <h3>Multiplication Test</h3>
                 <p>This quiz tests your multiplication skills.</p>
             </a>
 
             <!-- Division Test -->
             <a href="division.html" class="test-link">
-                <img src="division.png" alt="Division Test" class="test-image">
+                <img src="{{ url_for('static', filename='division.png') }}" alt="Division Test" class="test-image">
                 <h3>Division Test</h3>
                 <p>This quiz tests your division skills.</p>
             </a>
