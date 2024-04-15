@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Multiplication Test</title>
     <style>
+        /* Styles are identical across all test pages */
         * {
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Georgia', Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
             font-size: 15px;
@@ -19,34 +19,28 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
-
         nav {
             background-color: #003366;
             overflow: hidden;
             text-align: center;
             padding: 10px;
         }
-
         .nav-links {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
-
         .nav-links li {
             display: inline-block;
             margin-right: 20px;
         }
-
         .nav-links li a {
             color: #ffffff;
             text-decoration: none;
         }
-
         .nav-links li a:hover {
             text-decoration: underline;
         }
-
         header {
             text-align: center;
             padding: 10px;
@@ -54,7 +48,6 @@
             color: #ffffff;
             margin-bottom: 20px;
         }
-
         .quiz-container {
             width: 80%;
             margin: auto;
@@ -62,31 +55,25 @@
             padding: 20px;
             box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
         }
-
         .question {
             margin-bottom: 20px;
         }
-
         .question label {
             font-weight: bold;
         }
-
         .question input {
             margin-left: 10px;
         }
-
         .feedback {
             margin-left: 20px;
             font-weight: bold;
         }
-
         .advice-message {
             color: red;
             font-size: 16px;
             text-align: center;
             margin-top: 20px;
         }
-
         footer {
             margin-top: 20px;
             padding: 10px;
@@ -109,47 +96,32 @@
     </header>
 
     <section class="quiz-container">
-        <form id="multiplicationTestForm">
+        <form id="multiplicationTestForm" method="post" action="/multiplication.html">
             <!-- Example questions, add more as needed -->
+            {% for question in questions %}
             <div class="question">
-                
+                <label>{{ question }}</label>
+                <input type="text" name="q{{ loop.index }}" autocomplete="off">
+                <span class="feedback"></span>
             </div>
+            {% endfor %}
             <!-- Additional questions here -->
-            <button type="button" onclick="checkAnswers()">Submit Answers</button>
+            <button type="submit">Submit Answers</button>
         </form>
+        
+        <!-- Display score and feedback message if available -->
+        {% if score is defined %}
+        <div class="score">
+            <p>Score: {{ score }}%</p>
+            <p>{{ feedback_message }}</p>
+        </div>
+        {% endif %}
+        
         <div class="advice-message" id="adviceMessage"></div>
     </section>
 
     <footer>
         <p>&copy; 2023 Math Test Taking Application. All rights reserved.</p>
     </footer>
-
-    <!-- <script>
-        function checkAnswers() {
-            var answers = {q1: '8', /* add more answers corresponding to your questions */};
-            var form = document.getElementById('additionTestForm');
-            var incorrectCount = 0;
-
-            for (var key in answers) {
-                var userAnswer = form[key].value;
-                var feedbackIcon = form[key].nextElementSibling;
-                if (userAnswer === answers[key]) {
-                    feedbackIcon.innerHTML = '✅'; // Checkmark for correct answer
-                    feedbackIcon.style.color = 'green';
-                } else {
-                    feedbackIcon.innerHTML = '❌'; // Red "X" for incorrect answer
-                    feedbackIcon.style.color = 'red';
-                    incorrectCount++;
-                }
-            }
-
-            var adviceMessage = document.getElementById('adviceMessage');
-            if (incorrectCount > 5) {
-                adviceMessage.innerHTML = 'You have more than five incorrect answers. Consider revisiting the <a href="study.html">Study Page</a> to improve your skills.';
-            } else {
-                adviceMessage.innerHTML = '';
-            }
-        }
-    </script> -->
 </body>
 </html>
