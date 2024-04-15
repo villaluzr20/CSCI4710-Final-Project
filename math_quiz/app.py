@@ -75,6 +75,23 @@ def get_multiplication_questions():
     # Return the questions fetched from the database
     return questions, correct_answers
 
+def get_division_questions():
+    questions = []
+    correct_answers = []
+    # Connect to the database
+    with sqlite3.connect('quiz.db') as conn:
+        cursor = conn.cursor()
+
+        # Fetch questions from the database for division
+        cursor.execute("SELECT question, correct_answer FROM division_questions")
+        rows = cursor.fetchall()
+        for row in rows:
+            questions.append(row[0])
+            correct_answers.append(row[1])
+
+    # Return the questions fetched from the database
+    return questions, correct_answers
+
 @app.route('/')
 def main():
     return render_template('main.html')
@@ -174,9 +191,34 @@ def multiplication():
         questions, _ = get_multiplication_questions()
         return render_template('multiplication.html', questions=questions)
 
-@app.route('/division.html')
+@app.route('/division.html', methods=['GET', 'POST'])
 def division():
-    return render_template('division.html')
+    if request.method == 'POST':
+        # Fetch questions and correct answers from the database
+        questions, correct_answers = get_division_questions()
+        print("User Answers:", request.form.values())
+        print("Correct Answers:", correct_answers)
+
+        # Fetch user's answers from the form submission
+        user_answers = [int(request.form.get(f'q{i}')) for i in range(1, len(correct_answers) + 1)]
+        print("User Answers:", user_answers)
+
+        # Calculate the score
+        score = calculate_score(user_answers, correct_answers)
+
+        # Provide feedback to the user based on the score
+        if score >= 70:
+            feedback_message = "Congratulations! You passed the test."
+        else:
+            feedback_message = "You need to study more. Try again later."
+
+        # Render the template with the questions, feedback message, and score
+        return render_template('division.html', score=score, feedback_message=feedback_message)
+
+    else:
+        # Fetch questions from the database
+        questions, _ = get_division_questions()
+        return render_template('division.html', questions=questions)
 
 if __name__ == '__main__':
     app.run(debug=True)
